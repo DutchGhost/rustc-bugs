@@ -1,9 +1,39 @@
+import toml
 import argparse
 
 import os
 import shutil
 import fileinput
+import datetime
 from subprocess import run
+
+def generate_info(name):
+    toml_string = """
+    [info]
+    name = "{}" # Name of the bug
+    discription = "" # Little discription of the bug
+    discovery_date = {} # When was it discovered
+    type = "" # What kind of bug, e.g ICE, invalid code generation etc
+    labels = "" # What labels has it been given?
+    effects = [""] # the versions it effects
+    resolved = false # Has it been fixed or not?
+
+    [issue]
+    link = "" # link to the issue
+
+    [additional]
+
+    [optional]
+    last_checked = {} # When was this bug last tested
+    """.format(name, datetime.datetime.now().isoformat(), datetime.datetime.now().isoformat())
+
+    parsed_toml = toml.loads(toml_string)
+
+    with open("info.toml", 'w') as f:
+        try:
+            toml.dump(parsed_toml, f)
+        except TypeError as e:
+            print("typerror: {}".format(e))
 
 if __name__ == '__main__':
 
@@ -27,25 +57,5 @@ if __name__ == '__main__':
     
     if args.new:
         run(["cargo", "new", name])
-
-        # Copy the template to the cargo project
-        shutil.copyfile('info-template.toml', '{}\info.toml.partial'.format(name))
-
         os.chdir(name)
-        with open('info.toml.partial', 'r') as pf:
-            with open('info.toml', 'w') as f:
-
-                # strip newlines
-                for line in map(lambda s: s.rstrip(), pf.readlines()):
-                    
-                    # Split the ' # ...' off
-                    info, *rest = line.split(' # ')
-
-                    # We can write the name directly
-                    if "name" in info:
-                        f.write(info.replace(r'name = ""', r'name = "{}"'.format(name)))
-                    else:
-                        f.write(info)
-                    
-                    f.write('\n')
-        os.remove('info.toml.partial')
+        generate_info(name)
