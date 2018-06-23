@@ -3,14 +3,17 @@ name = "" # Name of the bug
 discription = "" # Little discription of the bug
 discovery_date = 1900-00-00T00:00:00-08:00 # When was it discovered
 type = "" # What kind of bug, e.g ICE, invalid code generation etc
-labels = "" # What labels has it been given?
-effects = [""] # the versions it effects
-resolved = false # Has it been fixed or not?
+effected_versions = [""] # the versions it effects
+
+[resolved]
+stable = false
+beta = false
+nightly = false
 
 [issue]
 link = "" # link to the issue
 
-[additional]
-
 [optional]
 last_checked = 1900-00-00T00:00:00-08:00 # When was this bug last tested
+
+[additional]

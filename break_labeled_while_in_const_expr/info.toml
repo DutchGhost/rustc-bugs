@@ -4,12 +4,16 @@ discription = "breaking a labeled while loop in a constant context results in an
 discovery_date = 2018-06-23T17:34:38+00:00
 type = "ICE"
 effected_versions = [ "rustc 1.27.0 (3eda71b00 2018-06-19)", "rustc 1.28.0-beta.2 (5981061e5 2018-06-22)", "rustc 1.28.0-nightly (f28c7aef7 2018-06-19)",]
-resolved = false
+
+[resolved]
+stable = false
+beta = false
+nightly = false
 
 [issue]
 link = "https://github.com/rust-lang/rust/issues/51350"
 
-[additional]
-
 [optional]
-last_checked = 2018-06-23T17:39:58+00:00
+last_checked = 2018-06-23T19:42:36+00:00
+
+[additional]

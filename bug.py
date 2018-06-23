@@ -26,15 +26,19 @@ def generate_info(name):
     discovery_date = {} # When was it discovered
     type = "" # What kind of bug, e.g ICE, invalid code generation etc
     effected_versions = [""] # the versions it effects
-    resolved = false # Has it been fixed or not?
+
+    [resolved]
+    stable = false
+    beta = false
+    nightly = false
 
     [issue]
     link = "" # link to the issue
 
-    [additional]
-
     [optional]
     last_checked = {} # When was this bug last tested
+
+    [additional]
     """.format(name, now, now)
 
     parsed_toml = toml.loads(toml_string)
@@ -43,15 +47,25 @@ def generate_info(name):
         # @NOTE: This *might* fail
         toml.dump(parsed_toml, f)
 
-def update_info(effected_versions = [""], resolved = False):
+def update_info(effected_versions, name):
     info = toml.load('info.toml')
     info_section = info["info"]
 
-    info_section["effected_versions"] = effected_versions
-    info_section["resolved"] = resolved
-
+    info_section["effected_versions"] = [v for (v, e) in effected_versions if not e]
+    
     optional = info["optional"]
     optional["last_checked"] = dparser.parse(time_now())
+
+    resolved = info["resolved"]
+
+    for (stable_beta_nightly, (v, e)) in zip(["stable", "beta", "nightly"], effected_versions):
+        should_not_error = resolved[stable_beta_nightly]
+
+        if should_not_error and not e:
+            print("\n\n")
+            print("WARNING")
+            print("{} crashed on {}, while it should not have", name, stable_beta_nightly)
+        resolved[stable_beta_nightly] = e
 
     with open('info.toml', 'w') as f:
         toml.dump(info, f)
@@ -74,7 +88,7 @@ def is_ice(cmd, version):
     return False
 
 def build():
-    effected_versions = []
+    version_resolved = []
     os.environ["RUST_BACKTRACE"] = "1"
     for version in ["stable", "beta", "nightly"]:
         
@@ -83,10 +97,12 @@ def build():
         version = check_output(["rustc", "--version",], stdin=PIPE, shell=False).decode('utf-8').rstrip()
 
         if is_ice(["cargo", "run"], version):
-            effected_versions.append(version)
+            version_resolved.append((version, False))
+        else:
+            version_resolved.append((version, True))
 
     os.environ["RUST_BACKTRACE"] = "0"
-    return effected_versions
+    return version_resolved
 
 if __name__ == '__main__':
 
@@ -108,15 +124,15 @@ if __name__ == '__main__':
     if args.run:
         os.chdir(name)
         e_versions = build()
-
-        resolved = True if e_versions == 0 else False
-        update_info(effected_versions = e_versions, resolved = resolved)
+        update_info(e_versions, name)
         
     if args.new:
         run(["cargo", "new", name])
         os.chdir(name)
         os.mkdir("backtraces")
         generate_info(name)
-        
+
     run(["git", "add", "backtraces/*"])
     run(["git", "add", "src/*"])
+
+    run(["cargo", "clean"])
