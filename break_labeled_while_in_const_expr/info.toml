@@ -1,16 +1,15 @@
 [info]
 name = "break_labeled_while_in_const_expr"
-discription = "Breaking out of of a while-loop with a label"
-discovery_date = 2018-06-23T12:44:30.628916
-type = "ICE"
-labels = "I-ICE"
-effects = ["stable", "beta", "nightly"]
+discription = ""
+discovery_date = 2018-06-23T17:34:38+00:00
+type = ""
+effected_versions = [ "rustc 1.27.0 (3eda71b00 2018-06-19)", "rustc 1.28.0-beta.2 (5981061e5 2018-06-22)", "rustc 1.28.0-nightly (f28c7aef7 2018-06-19)",]
 resolved = false
 
 [issue]
-link = "https://github.com/rust-lang/rust/issues/51350"
+link = ""
 
 [additional]
 
 [optional]
-last_checked = 2018-06-23T12:44:30.628916
+last_checked = 2018-06-23T17:39:58+00:00
