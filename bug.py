@@ -70,6 +70,7 @@ def update_info(effected_versions, name):
     with open('info.toml', 'w') as f:
         toml.dump(info, f)
 
+#@NOTE: This also returns True if the process did not exit succesfully, not sure if this is a good thing.
 def is_ice(cmd, version):
     try:
         check_output(cmd, stderr=PIPE, shell=False)
