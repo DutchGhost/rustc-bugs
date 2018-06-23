@@ -1,0 +1,19 @@
+[info]
+name = "self_referential_trait_subsitutions"
+discription = "Self referential traits caused the compiler to stack overflow"
+discovery_date = 2018-05-05T20:05:40+00:00
+type = "Stack Overflow"
+effected_versions = []
+
+[resolved]
+stable = true
+beta = true
+nightly = true
+
+[issue]
+link = ""
+
+[optional]
+last_checked = 2018-06-23T20:07:41+00:00
+
+[additional]
