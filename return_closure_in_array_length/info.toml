@@ -3,7 +3,7 @@ name = "return_closure_in_array_length"
 discription = "returning a closure at the place of the length of an array results in an ICE"
 discovery_date = 2018-06-22T19:58:43+00:00
 type = "ICE"
-effected_versions = [ "rustc 1.27.0 (3eda71b00 2018-06-19)", "rustc 1.28.0-beta.2 (5981061e5 2018-06-22)", "rustc 1.28.0-nightly (f28c7aef7 2018-06-19)",]
+effected_versions = [ "rustc 1.27.0 (3eda71b00 2018-06-19)", "rustc 1.28.0-beta.2 (5981061e5 2018-06-22)", "rustc 1.28.0-nightly (60efbdead 2018-06-23)",]
 
 [resolved]
 stable = false
@@ -14,6 +14,6 @@ nightly = false
 link = "https://github.com/rust-lang/rust/issues/51714"
 
 [optional]
-last_checked = 2018-06-23T19:59:46+00:00
+last_checked = 2018-06-26T13:00:03+00:00
 
 [additional]
