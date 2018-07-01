@@ -1,3 +1,0 @@
-fn main() {
-    while |_: [_; break]| {} {}
-}
