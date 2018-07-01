@@ -1,0 +1,20 @@
+[info]
+name = "unexpected_type"
+discription = "Putting wrong types in the match expression gives an ICE"
+discovery_date = 2018-07-01T21:16:37+00:00
+type = "ICE"
+effected_versions = [ "rustc 1.27.0 (3eda71b00 2018-06-19)", "rustc 1.28.0-beta.6 (915ac6602 2018-06-30)", "rustc 1.28.0-nightly (e3bf634e0 2018-06-28)",]
+
+[resolved]
+stable = false
+beta = false
+nightly = false
+
+[issue]
+link = "https://github.com/rust-lang/rust/issues/51963"
+
+[optional]
+last_checked = 2018-07-01T21:25:15+00:00
+
+[additional]
+related = "https://github.com/rust-lang/rust/issues/51963"
