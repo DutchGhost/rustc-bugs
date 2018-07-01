@@ -14,6 +14,6 @@ nightly = false
 link = "https://github.com/rust-lang/rust/issues/51714"
 
 [optional]
-last_checked = 2018-07-01T19:26:57+00:00
+last_checked = 2018-07-01T20:45:26+00:00
 
 [additional]

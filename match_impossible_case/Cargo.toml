@@ -1,0 +1,6 @@
+[package]
+name = "match_impossible_case"
+version = "0.1.0"
+authors = ["DutchGhost <kasper199914@gmail.com>"]
+
+[dependencies]
