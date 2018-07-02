@@ -1,7 +1,7 @@
 [info]
-name = "return_closure_with_arg_in_array_length"
-discription = "array that has a `return | ... | ...` as length ICE's"
-discovery_date = 2018-07-01T15:25:47+00:00
+name = "unexpected_type"
+discription = "Putting wrong types in the match expression gives an ICE"
+discovery_date = 2018-07-01T21:16:37+00:00
 type = "ICE"
 effected_versions = [ "rustc 1.27.0 (3eda71b00 2018-06-19)", "rustc 1.28.0-beta.6 (915ac6602 2018-06-30)", "rustc 1.28.0-nightly (e3bf634e0 2018-06-28)",]
 
@@ -14,7 +14,7 @@ nightly = false
 link = "https://github.com/rust-lang/rust/issues/51963"
 
 [optional]
-last_checked = 2018-07-01T22:14:02+00:00
+last_checked = 2018-07-02T16:51:44+00:00
 
 [additional]
-related = "https://github.com/rust-lang/rust/issues/51714"
+related = "https://github.com/rust-lang/rust/issues/51963"
