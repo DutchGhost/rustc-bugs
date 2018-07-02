@@ -1,13 +1,13 @@
 error[E0572]: return statement outside of function body
-  --> src\lib.rs:48:14
+  --> src\lib.rs:54:14
    |
-48 |         [(); return || {}]
+54 |         [(); return || {}]
    |              ^^^^^^^^^^^^
 
 error: internal compiler error: librustc_typeck\check\upvar.rs:115: type of closure expr NodeId(12) is not a closure TyError
-  --> src\lib.rs:48:21
+  --> src\lib.rs:54:21
    |
-48 |         [(); return || {}]
+54 |         [(); return || {}]
    |                     ^^^^^
 
 thread 'main' panicked at 'Box<Any>', librustc_errors\lib.rs:499:9

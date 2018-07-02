@@ -14,7 +14,7 @@ if __name__ == '__main__':
     for v in ["stable", "beta", "nightly"]:
         
         # Change the version
-        run(["rustup", "default", v])
+        run(["rustup", "override", "set", v])
         
         # For each ICE, build the lib.
         for ice_name in runs:
