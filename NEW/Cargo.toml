@@ -1,0 +1,19 @@
+[package]
+name = "test_bugs"
+version = "0.1.0"
+authors = ["DutchGhost <kasper199914@gmail.com>"]
+
+[dependencies]
+
+[features]
+stable = []
+beta = []
+nightly = []
+missing_binding_mode = []
+impossible_case_reached = []
+unexpected_type = []
+closure_expr_node_id = []
+assertion_failed = []
+invalid_loop_id = []
+multiple_assignments = []
+break_labeled_while = []

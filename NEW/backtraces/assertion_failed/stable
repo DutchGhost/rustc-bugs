@@ -1,0 +1,105 @@
+thread 'main' panicked at 'assertion failed: self.tcx.sess.err_count() > 0', librustc_typeck\check\mod.rs:3791:19
+stack backtrace:
+   0: <u128 as core::fmt::num::Int>::zero
+   1: std::sys::windows::process::<impl core::convert::From<std::sys::windows::process::WindowsEnvKey> for std::ffi::os_str::OsString>::from
+   2: std::panicking::take_hook
+   3: std::panicking::take_hook
+   4: rustc::ty::structural_impls::<impl rustc::ty::context::Lift<'tcx> for rustc::middle::const_val::ErrKind<'a>>::lift_to_tcx
+   5: std::panicking::rust_panic_with_hook
+   6: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
+   7: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+   8: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+   9: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
+  10: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
+  11: rustc::ty::maps::<impl rustc::ty::maps::config::QueryConfig<'tcx> for rustc::ty::maps::queries::typeck_tables_of<'tcx>>::compute
+  12: rustc::ty::context::tls::track_diagnostic
+  13: rustc::dep_graph::graph::DepGraph::assert_ignored
+  14: rustc::ty::context::tls::track_diagnostic
+  15: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
+  16: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
+  17: rustc::ty::maps::<impl rustc::ty::context::TyCtxt<'a, 'tcx, 'lcx>>::typeck_tables_of
+  18: rustc_mir::interpret::const_eval::const_eval_provider
+  19: rustc::ty::maps::<impl rustc::ty::maps::config::QueryConfig<'tcx> for rustc::ty::maps::queries::const_eval<'tcx>>::compute
+  20: rustc::ty::context::tls::track_diagnostic
+  21: rustc::dep_graph::graph::DepGraph::assert_ignored
+  22: rustc::ty::context::tls::track_diagnostic
+  23: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
+  24: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
+  25: <rustc::traits::project::AssociatedTypeNormalizer<'a, 'b, 'gcx, 'tcx> as rustc::ty::fold::TypeFolder<'gcx, 'tcx>>::fold_const
+  26: rustc::ty::structural_impls::<impl rustc::ty::context::Lift<'tcx> for rustc::ty::ParamEnv<'a>>::lift_to_tcx
+  27: <rustc::traits::project::AssociatedTypeNormalizer<'a, 'b, 'gcx, 'tcx> as rustc::ty::fold::TypeFolder<'gcx, 'tcx>>::fold_ty
+  28: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
+  29: rustc_typeck::hir_trait_to_predicates
+  30: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::normalize_ty
+  31: <rustc_typeck::variance::terms::InferredIndex as core::fmt::Debug>::fmt
+  32: <rustc_typeck::astconv::Bounds<'tcx> as core::fmt::Debug>::fmt
+  33: <rustc_typeck::variance::terms::InferredIndex as core::fmt::Debug>::fmt
+  34: <unknown>
+  35: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  36: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  37: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  38: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  39: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  40: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  41: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  42: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  43: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  44: <rustc_typeck::check::GatherLocalsVisitor<'a, 'gcx, 'tcx> as rustc::hir::intravisit::Visitor<'gcx>>::visit_pat
+  45: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
+  46: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
+  47: rustc::ty::maps::<impl rustc::ty::maps::config::QueryConfig<'tcx> for rustc::ty::maps::queries::typeck_tables_of<'tcx>>::compute
+  48: rustc::ty::context::tls::track_diagnostic
+  49: rustc::dep_graph::graph::DepGraph::assert_ignored
+  50: rustc::ty::context::tls::track_diagnostic
+  51: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
+  52: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
+  53: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
+  54: <rustc_typeck::check::Diverges as core::fmt::Debug>::fmt
+  55: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
+  56: rustc::ty::context::tls::track_diagnostic
+  57: rustc::dep_graph::graph::DepGraph::assert_ignored
+  58: rustc::ty::context::tls::track_diagnostic
+  59: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
+  60: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
+  61: rustc_typeck::check_crate
+  62: <rustc_driver::pretty::UserIdentifiedItem as core::fmt::Debug>::fmt
+  63: <rustc_driver::pretty::UserIdentifiedItem as core::fmt::Debug>::fmt
+  64: <unknown>
+  65: rustc_driver::driver::compile_input
+  66: rustc_driver::run_compiler
+  67: rustc_driver::driver::build_output_filenames
+  68: <unknown>
+  69: rustc_driver::driver::build_output_filenames
+  70: _rust_maybe_catch_panic
+  71: rustc_driver::profile::trace::write_style
+  72: rustc_driver::main
+  73: <unknown>
+  74: std::panicking::update_panic_count
+  75: _rust_maybe_catch_panic
+  76: std::rt::lang_start_internal
+  77: <unknown>
+  78: <unknown>
+  79: BaseThreadInitThunk
+  80: RtlUserThreadStart
+query stack during panic:
+#0 [typeck_tables_of] processing `internal_compiler_errors::assertion_failed::{{closure}}::{{initializer}}`
+#1 [const_eval] const-evaluating `internal_compiler_errors::assertion_failed::{{closure}}::{{initializer}}`
+#2 [typeck_tables_of] processing `internal_compiler_errors::assertion_failed`
+#3 [typeck_item_bodies] type-checking all item bodies
+end of query stack
+
+error: internal compiler error: unexpected panic
+
+note: the compiler unexpectedly panicked. this is a bug.
+
+note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
+
+note: rustc 1.27.0 (3eda71b00 2018-06-19) running on x86_64-pc-windows-msvc
+
+note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
+
+note: some of the compiler flags provided by cargo are hidden
+
+error: Could not compile `test_bugs`.
+
+To learn more, run the command again with --verbose.
