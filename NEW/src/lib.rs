@@ -1,3 +1,6 @@
+#[cfg_attr(feature = "generator_ice", feature(generator_trait))]
+#[cfg_attr(feature = "generator_ice", feature(generators))]
+
 /// In this module are a number of ICE's defined. Each ICE is identified by the message the ICE
 /// gives. Furthermore, the versions in which the piece of code ICE's is also specified.
 ///
@@ -82,6 +85,32 @@ pub mod internal_compiler_errors {
     #[cfg(all(feature = "multiple_assignments", any(feature = "stable", feature = "beta", feature = "nightly")))]
     pub fn multiple_assignments() {
         const crash: () = 'a: while break 'a {};
+    }
+
+    
+    #[cfg(all(feature = "broken_mir", feature = "generator_ice", any(feature = "nightly")))] 
+    pub fn broken_mir() {
+        use std::ops::{Generator, GeneratorState};
+
+        macro_rules! yield_from {
+            ($generator:expr) => (
+                unsafe {
+                    loop {
+                        match $generator.resume() {
+                            GeneratorState::Yielded(y) => yield y,
+                            GeneratorState::Complete(ret) => break ret,
+                        }
+                    }
+                }
+            );
+        }
+
+        || {
+            yield_from!(|| {
+                yield;
+            });
+            return;
+        }
     }
 }
 
