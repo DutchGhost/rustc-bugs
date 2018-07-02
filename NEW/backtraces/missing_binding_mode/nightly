@@ -1,7 +1,7 @@
 error[E0572]: return statement outside of function body
-  --> src\lib.rs:15:14
+  --> src\lib.rs:17:14
    |
-15 |         [(); return | crash | ()]
+17 |         [(); return | crash | ()]
    |              ^^^^^^^^^^^^^^^^^^^
 
 thread 'main' panicked at 'missing binding mode', libcore\option.rs:960:5

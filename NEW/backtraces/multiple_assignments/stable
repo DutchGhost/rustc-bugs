@@ -1,7 +1,7 @@
 error: internal compiler error: librustc_mir\transform\qualify_consts.rs:273: multiple assignments to _0
-  --> src\lib.rs:84:27
+  --> src\lib.rs:86:27
    |
-84 |         const crash: () = 'a: while break 'a {};
+86 |         const crash: () = 'a: while break 'a {};
    |                           ^^^^^^^^^^^^^^^^^^^^^
 
 thread 'main' panicked at 'Box<Any>', librustc_errors\lib.rs:499:9

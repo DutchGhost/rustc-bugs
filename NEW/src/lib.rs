@@ -1,5 +1,4 @@
-#[cfg_attr(feature = "generator_ice", feature(generator_trait))]
-#[cfg_attr(feature = "generator_ice", feature(generators))]
+#![cfg_attr(feature = "generator_ice", feature(generator_trait, generators))]
 
 /// In this module are a number of ICE's defined. Each ICE is identified by the message the ICE
 /// gives. Furthermore, the versions in which the piece of code ICE's is also specified.
@@ -87,7 +86,8 @@ pub mod internal_compiler_errors {
         const crash: () = 'a: while break 'a {};
     }
 
-    
+    /// Calling a macro that advances a generator, with a generator that is not bound to a
+    /// variable, ICE's.
     #[cfg(all(feature = "broken_mir", feature = "generator_ice", any(feature = "nightly")))] 
     pub fn broken_mir() {
         use std::ops::{Generator, GeneratorState};
@@ -110,7 +110,7 @@ pub mod internal_compiler_errors {
                 yield;
             });
             return;
-        }
+        };
     }
 }
 

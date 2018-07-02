@@ -3,6 +3,8 @@ import shutil
 
 from subprocess import CalledProcessError, check_output, PIPE, run
 
+TOML_START = 12
+
 class Icecream():
     def __init__(self):
         pass
@@ -11,7 +13,7 @@ class Icecream():
         os.environ["RUST_BACKTRACE"] = "1"
 
         with open("Cargo.toml", 'r') as f:
-            self.icenames = [line.split(' =')[0] for line in f.readlines()[11:]]
+            self.icenames = [line.split(' =')[0] for line in f.readlines()[12:]]
         return self
 
     def __exit__(self, *args):
@@ -20,14 +22,21 @@ class Icecream():
         run(["cargo", "clean"])
     
     def __iter__(self):
+
+        rare_features = {"broken_mir" : "generator_ice"}
+
         for version in ["stable", "beta", "nightly"]:
             run(["rustup", "override", "set", version])
 
             for ice_name in self.icenames:
                 print("[*] Running ICE {} on {}".format(ice_name, version))
+                
+                # @TODO: Find a better way to detect we need custom, rare features.
+                features = ','.join([version, ice_name, rare_features.get(ice_name, '')])
+
 
                 try:
-                    out = check_output(["cargo", "build", "--features", ','.join([version, ice_name])], stderr = PIPE, shell = False)
+                    out = check_output(["cargo", "build", "--features", features], stderr = PIPE, shell = False)
                 except CalledProcessError as e:
                     err = e.stderr.decode('utf-8')
 

@@ -1,10 +1,10 @@
 error[E0572]: return statement outside of function body
-  --> src\lib.rs:42:14
+  --> src\lib.rs:44:14
    |
-42 |           [(); return match () {
+44 |           [(); return match () {
    |  ______________^
-43 | |             'c' => 1,
-44 | |         }]
+45 | |             'c' => 1,
+46 | |         }]
    | |_________^
 
 error: internal compiler error: librustc\ty\layout.rs:1122: LayoutDetails::compute: unexpected type `[type error]`
