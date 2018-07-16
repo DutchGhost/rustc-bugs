@@ -1,0 +1,101 @@
+error[E0019]: constant contains unimplemented expression type
+   --> src\lib.rs:164:26
+    |
+164 |         let f = [();  { &loop { break } as *const _ as usize } ];
+    |                          ^^^^^^^^^^^^^^
+
+error: internal compiler error: librustc\ty\relate.rs:506: arrays should not have Const { ty: usize, val: Value(Scalar(Ptr(Pointer { alloc_id: AllocId(1), offset: Size { raw: 0 } }))) } as length
+
+thread 'main' panicked at 'Box<Any>', librustc_errors\lib.rs:554:9
+stack backtrace:
+   0: <std::sync::mpsc::select::Select as core::fmt::Debug>::fmt
+   1: <std::sys::windows::dynamic_lib::DynamicLibrary as core::ops::drop::Drop>::drop
+   2: std::panicking::take_hook
+   3: std::panicking::take_hook
+   4: <rustc::ty::query::on_disk_cache::CacheEncoder<'enc, 'a, 'tcx, serialize::opaque::Encoder<'enc>> as serialize::serialize::SpecializedEncoder<rustc::ich::fingerprint::Fingerprint>>::specialized_encode
+   5: std::panicking::rust_panic_with_hook
+   6: <rustc_errors::emitter::ColorConfig as core::fmt::Debug>::fmt
+   7: rustc_errors::Handler::bug
+   8: rustc::session::config::OutputTypes::values
+   9: rustc::ty::context::tls::track_diagnostic
+  10: rustc::ty::context::tls::track_diagnostic
+  11: rustc::ty::context::tls::track_diagnostic
+  12: rustc::session::bug_fmt
+  13: rustc::session::bug_fmt
+  14: rustc::ty::query::on_disk_cache::<impl serialize::serialize::SpecializedDecoder<rustc::ty::query::on_disk_cache::IntEncodedWithFixedSize> for serialize::opaque::Decoder<'enc>>::specialized_decode
+  15: <rustc::infer::combine::Generalizer<'cx, 'gcx, 'tcx> as rustc::ty::relate::TypeRelation<'cx, 'gcx, 'tcx>>::tys
+  16: rustc::infer::anon_types::Instantiator::fold_anon_ty
+  17: <rustc::infer::sub::Sub<'combine, 'infcx, 'gcx, 'tcx> as rustc::ty::relate::TypeRelation<'infcx, 'gcx, 'tcx>>::tys
+  18: <rustc_typeck::check_unused::CollectExternCrateVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
+  19: <rustc_typeck::check_unused::CollectExternCrateVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
+  20: <rustc::hir::HirId as rustc_typeck::check::writeback::Locatable>::to_span
+  21: <rustc_typeck::check_unused::CollectExternCrateVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
+  22: <rustc_typeck::check_unused::CollectExternCrateVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
+  23: <unknown>
+  24: <unknown>
+  25: <unknown>
+  26: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  27: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  28: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  29: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  30: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  31: <rustc_typeck::check::GatherLocalsVisitor<'a, 'gcx, 'tcx> as rustc::hir::intravisit::Visitor<'gcx>>::visit_pat
+  32: <rustc_typeck::outlives::test::OutlivesTest<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+  33: <rustc_typeck::check_unused::CollectExternCrateVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
+  34: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
+  35: rustc::ty::query::on_disk_cache::__ty_decoder_impl::<impl serialize::serialize::Decoder for rustc::ty::query::on_disk_cache::CacheDecoder<'a, 'tcx, 'x>>::read_str
+  36: rustc::ty::context::tls::track_diagnostic
+  37: rustc::ty::context::tls::track_diagnostic
+  38: rustc::dep_graph::graph::DepGraph::assert_ignored
+  39: rustc::ty::context::tls::track_diagnostic
+  40: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
+  41: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
+  42: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
+  43: <rustc_typeck::check::Diverges as core::fmt::Debug>::fmt
+  44: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
+  45: rustc::ty::context::tls::track_diagnostic
+  46: rustc::ty::context::tls::track_diagnostic
+  47: rustc::dep_graph::graph::DepGraph::assert_ignored
+  48: rustc::ty::context::tls::track_diagnostic
+  49: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
+  50: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
+  51: rustc_typeck::check_crate
+  52: <rustc_driver::Compilation as core::fmt::Debug>::fmt
+  53: <rustc_driver::pretty::IdentifiedAnnotation<'hir> as rustc_driver::pretty::HirPrinterSupport<'hir>>::sess
+  54: <unknown>
+  55: rustc_driver::driver::compile_input
+  56: rustc_driver::run_compiler
+  57: rustc_driver::target_features::add_configuration
+  58: <rustc_driver::pretty::IdentifiedAnnotation<'hir> as rustc_driver::pretty::HirPrinterSupport<'hir>>::sess
+  59: _rust_maybe_catch_panic
+  60: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
+  61: rustc_driver::main
+  62: <unknown>
+  63: std::panicking::update_panic_count
+  64: _rust_maybe_catch_panic
+  65: std::rt::lang_start_internal
+  66: <unknown>
+  67: <unknown>
+  68: BaseThreadInitThunk
+  69: RtlUserThreadStart
+query stack during panic:
+#0 [typeck_tables_of] processing `internal_compiler_errors::no_kind_for_cast`
+#1 [typeck_item_bodies] type-checking all item bodies
+end of query stack
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0019`.
+
+note: the compiler unexpectedly panicked. this is a bug.
+
+note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
+
+note: rustc 1.28.0-beta.11 (67e5a1862 2018-07-14) running on x86_64-pc-windows-msvc
+
+note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
+
+note: some of the compiler flags provided by cargo are hidden
+
+error: Could not compile `test_bugs`.
+
+To learn more, run the command again with --verbose.
