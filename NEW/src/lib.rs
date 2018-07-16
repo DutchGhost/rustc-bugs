@@ -153,6 +153,16 @@ pub mod internal_compiler_errors {
     pub fn expected_const_got() {
         [(); &(static || {}) as *const _ as usize]
     }
+
+    #[cfg(all(feature = "closure_type_err", any(feature = "stable", feature = "beta", feature = "nightly")))]
+    pub fn closure_type_err() {
+        [(); &(&'static: loop { |x| {}; }) as *const _ as usize]
+    }
+
+    #[cfg(all(feature = "no_kind_for_cast", any(feature = "stable", feature = "beta", feature = "nightly")))]
+    pub fn no_kind_for_cast() {
+        [(); &(for _ in 0u64..1 { |x| {}; }) as *const _ as usize]
+    }
 }
 
 pub mod invalid_code_generation {

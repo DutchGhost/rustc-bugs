@@ -40,7 +40,7 @@ class Icecream():
                 except CalledProcessError as e:
                     err = e.stderr.decode('utf-8')
 
-                    if 'internal compiler error' in err and "thread 'main' panicked at" in err:
+                    if 'internal compiler error' in err or "thread 'main' panicked at" in err:
                         lines = err.split('\n')
 
                         backtrace = '\n'.join(lines[1:])
