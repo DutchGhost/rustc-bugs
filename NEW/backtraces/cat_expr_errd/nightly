@@ -1,0 +1,19 @@
+warning: unreachable expression
+   --> src\lib.rs:169:14
+    |
+169 |         [(); & { loop { continue } } ]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: #[warn(unreachable_code)] on by default
+
+error: internal compiler error: cat_expr Errd
+   --> src\lib.rs:169:9
+    |
+169 |         [(); & { loop { continue } } ]
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to previous error
+
+error: Could not compile `test_bugs`.
+
+To learn more, run the command again with --verbose.

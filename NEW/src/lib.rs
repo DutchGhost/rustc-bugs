@@ -161,7 +161,12 @@ pub mod internal_compiler_errors {
 
     #[cfg(all(feature = "no_kind_for_cast", any(feature = "stable", feature = "beta", feature = "nightly")))]
     pub fn no_kind_for_cast() {
-        [(); &(for _ in 0u64..1 { |x| {}; }) as *const _ as usize]
+        [(); &(for _ in 0u64..1 { }) as *const _ as usize]
+    }
+
+    #[cfg(all(feature = "cat_expr_errd", any(feature = "stable", feature = "beta", feature = "nightly")))]
+    pub fn cat_expr_errd() {
+        [(); & { loop { continue } } ]
     }
 }
 
