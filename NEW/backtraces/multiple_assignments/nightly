@@ -1,27 +1,27 @@
-error: internal compiler error: librustc_mir\transform\qualify_consts.rs:272: multiple assignments to _0
-  --> src\lib.rs:86:27
-   |
-86 |         const crash: () = 'a: while break 'a {};
-   |                           ^^^^^^^^^^^^^^^^^^^^^
+error: internal compiler error: librustc_mir\transform\qualify_consts.rs:230: multiple assignments to _0
+   --> src\lib.rs:105:27
+    |
+105 |         const crash: () = 'a: while break 'a {};
+    |                           ^^^^^^^^^^^^^^^^^^^^^
 
 thread 'main' panicked at 'Box<Any>', librustc_errors\lib.rs:499:9
 stack backtrace:
-   0: <std::collections::hash::map::DefaultHasher as core::fmt::Debug>::fmt
-   1: <std::sys::windows::dynamic_lib::DynamicLibrary as core::ops::drop::Drop>::drop
+   0: <std::sys::windows::args::Args as core::ops::drop::Drop>::drop
+   1: std::error::<impl core::convert::From<alloc::borrow::Cow<'b, str>> for alloc::boxed::Box<(dyn std::error::Error + core::marker::Sync + core::marker::Send + 'a)>>::from
    2: std::panicking::take_hook
    3: std::panicking::take_hook
-   4: <rustc::ty::SymbolName as core::fmt::Debug>::fmt
+   4: <rustc::ty::SymbolName as core::fmt::Display>::fmt
    5: std::panicking::rust_panic_with_hook
-   6: <rustc_mir::dataflow::graphviz::Edge as core::fmt::Debug>::fmt
-   7: <rustc_mir::transform::uniform_array_move_out::LocalUse as core::fmt::Debug>::fmt
-   8: <rustc_mir::transform::qualify_consts::Qualif as core::fmt::UpperHex>::fmt
-   9: <rustc_mir::transform::qualify_consts::Qualif as core::fmt::UpperHex>::fmt
-  10: <rustc_mir::transform::qualify_consts::Qualif as core::fmt::UpperHex>::fmt
-  11: <rustc_mir::transform::qualify_consts::Qualif as core::fmt::UpperHex>::fmt
-  12: <rustc_mir::dataflow::impls::borrows::Borrows<'a, 'gcx, 'tcx> as rustc_mir::dataflow::BitDenotation>::start_block_effect
-  13: <rustc_mir::dataflow::impls::borrows::Borrows<'a, 'gcx, 'tcx> as rustc_mir::dataflow::BitDenotation>::start_block_effect
+   6: <rustc_mir::dataflow::move_paths::indexes::BorrowIndex as rustc_data_structures::indexed_vec::Idx>::new
+   7: <rustc_mir::dataflow::graphviz::Edge as core::fmt::Debug>::fmt
+   8: <unknown>
+   9: <unknown>
+  10: <unknown>
+  11: <unknown>
+  12: <unknown>
+  13: <unknown>
   14: <rustc_mir::transform::qualify_consts::Mode as core::fmt::Display>::fmt
-  15: <rustc_mir::monomorphize::collector::MonoItemCollectionMode as core::fmt::Debug>::fmt
+  15: <unknown>
   16: <rustc_mir::transform::qualify_consts::Mode as core::fmt::Display>::fmt
   17: rustc_mir::transform::qualify_consts::provide
   18: rustc::ty::context::tls::track_diagnostic
@@ -48,17 +48,17 @@ stack backtrace:
   39: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
   40: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
   41: rustc::ty::query::<impl rustc::ty::context::TyCtxt<'a, 'tcx, 'lcx>>::borrowck
-  42: <rustc_borrowck::borrowck::gather_loans::gather_moves::PatternSource<'tcx> as core::fmt::Debug>::fmt
+  42: <rustc_borrowck::borrowck::unused::UsedMutFinder<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_nested_body
   43: rustc_borrowck::borrowck::check_crate
-  44: <humantime::date::Error as std::error::Error>::cause
-  45: <rustc_driver::pretty::IdentifiedAnnotation<'hir> as rustc_driver::pretty::PrinterSupport>::sess
-  46: <unknown>
+  44: <unknown>
+  45: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_impl_item
+  46: <rustc_driver::Compilation as core::fmt::Debug>::fmt
   47: rustc_driver::driver::compile_input
   48: rustc_driver::run_compiler
-  49: <env_logger::filter::inner::Filter as core::fmt::Display>::fmt
-  50: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
+  49: rustc_driver::target_features::add_configuration
+  50: <unknown>
   51: _rust_maybe_catch_panic
-  52: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
+  52: rustc_driver::profile::dump
   53: rustc_driver::main
   54: <unknown>
   55: std::panicking::update_panic_count
@@ -80,7 +80,7 @@ note: the compiler unexpectedly panicked. this is a bug.
 
 note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
 
-note: rustc 1.28.0-nightly (e3bf634e0 2018-06-28) running on x86_64-pc-windows-msvc
+note: rustc 1.29.0-nightly (31f1bc7b4 2018-07-15) running on x86_64-pc-windows-msvc
 
 note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
 

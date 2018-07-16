@@ -12,11 +12,16 @@ pub mod internal_compiler_errors {
     /// ```
     /// [(); return | crash | ()]
     /// ```
-    #[cfg(all(feature = "missing_binding_mode", any(feature = "stable", feature = "beta", feature = "nightly")))]
+    #[cfg(
+        all(
+            feature = "missing_binding_mode",
+            any(feature = "stable", feature = "beta", feature = "nightly")
+        )
+    )]
     pub fn missing_binding_mode() {
-        [(); return | crash | ()]
+        [(); return |crash| ()]
     }
-    
+
     /// Returning a match that does not cover all patterns as an array length ICE's
     /// # Examples
     /// ```
@@ -24,28 +29,37 @@ pub mod internal_compiler_errors {
     ///     1 => 1,
     /// }]
     /// ```
-    #[cfg(all(feature = "impossible_case_reached", any(feature = "stable", feature = "beta", feature = "nightly")))]
+    #[cfg(
+        all(
+            feature = "impossible_case_reached",
+            any(feature = "stable", feature = "beta", feature = "nightly")
+        )
+    )]
     pub fn impossible_case_reached() {
         [(); return match 1 {
             1 => 1,
         }]
     }
-    
 
     /// Returning a match that matches on wrong types as an array length ICE's.
     /// # Examples
     /// ```
-    /// [() return match () {
+    /// [(); return match () {
     ///     'c' => 1,
     /// }]
     /// ```
-    #[cfg(all(feature = "unexpected_type", any(feature = "stable", feature = "beta", feature = "nightly")))]
+    #[cfg(
+        all(
+            feature = "unexpected_type",
+            any(feature = "stable", feature = "beta", feature = "nightly")
+        )
+    )]
     pub fn unexpected_type() {
         [(); return match () {
             'c' => 1,
         }]
     }
-    
+
     /// Returning a closure without arguments as an array length ICE's.
     /// # Examples
     /// ```
@@ -55,7 +69,7 @@ pub mod internal_compiler_errors {
     pub fn closure_expr_node_id() {
         [(); return || {}]
     }
-    
+
     /// Putting a `break` as an array length ICE's.
     /// # Examples
     /// ```
@@ -63,7 +77,7 @@ pub mod internal_compiler_errors {
     /// ```
     #[cfg(all(feature = "assertion_failed", any(feature = "stable", feature = "beta")))]
     pub fn assertion_failed() {
-        while |_: [_; break] | {} {}
+        while |_: [_; break]| {} {}
     }
 
     /// Putting a `continue` as an array length ICE's.
@@ -73,7 +87,7 @@ pub mod internal_compiler_errors {
     /// ```
     #[cfg(all(feature = "invalid_loop_id", any(feature = "stable", feature = "beta")))]
     pub fn invalid_loop_id() {
-        while |_: [_; continue] | {} {}
+        while |_: [_; continue]| {} {}
     }
 
     /// Breaking a labeled loop in a constant context ICE's
@@ -81,19 +95,24 @@ pub mod internal_compiler_errors {
     /// ```
     /// const crash: () = 'a: while break 'a {};
     /// ```
-    #[cfg(all(feature = "multiple_assignments", any(feature = "stable", feature = "beta", feature = "nightly")))]
+    #[cfg(
+        all(
+            feature = "multiple_assignments",
+            any(feature = "stable", feature = "beta", feature = "nightly")
+        )
+    )]
     pub fn multiple_assignments() {
         const crash: () = 'a: while break 'a {};
     }
 
     /// Calling a macro that advances a generator, with a generator that is not bound to a
     /// variable, ICE's.
-    #[cfg(all(feature = "broken_mir", feature = "generator_ice", any(feature = "nightly")))] 
+    #[cfg(all(feature = "broken_mir", feature = "generator_ice", any(feature = "nightly")))]
     pub fn broken_mir() {
         use std::ops::{Generator, GeneratorState};
 
         macro_rules! yield_from {
-            ($generator:expr) => (
+            ($generator:expr) => {
                 unsafe {
                     loop {
                         match $generator.resume() {
@@ -102,7 +121,7 @@ pub mod internal_compiler_errors {
                         }
                     }
                 }
-            );
+            };
         }
 
         || {
@@ -111,6 +130,28 @@ pub mod internal_compiler_errors {
             });
             return;
         };
+    }
+
+    /// Casting an &(static closure(args)) as *const _ as usize ICE's.
+    #[cfg(
+        all(
+            feature = "type_not_region",
+            any(feature = "stable", feature = "beta", feature = "nightly")
+        )
+    )]
+    pub fn type_not_region() {
+        [(); &(static |x| {}) as *const _ as usize]
+    }
+
+    /// Casting an &(static closure) as *const _ as usize ICE's
+    #[cfg(
+        all(
+            feature = "expected_const_got",
+            any(feature = "stable", feature = "beta", feature = "nightly")
+        )
+    )]
+    pub fn expected_const_got() {
+        [(); &(static || {}) as *const _ as usize]
     }
 }
 
@@ -128,7 +169,7 @@ pub mod invalid_code_generation {
 
 #[cfg(test)]
 mod tests {
-    
+
     #[cfg(all(feature = "break_labeled_while", any(feature = "stable")))]
     #[test]
     fn test_break_labeled_loop() {

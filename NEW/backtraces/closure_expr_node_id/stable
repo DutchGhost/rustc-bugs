@@ -1,19 +1,19 @@
 error[E0572]: return statement outside of function body
-  --> src\lib.rs:56:14
+  --> src\lib.rs:70:14
    |
-56 |         [(); return || {}]
+70 |         [(); return || {}]
    |              ^^^^^^^^^^^^
 
 error: internal compiler error: librustc_typeck\check\upvar.rs:115: type of closure expr NodeId(11) is not a closure TyError
-  --> src\lib.rs:56:21
+  --> src\lib.rs:70:21
    |
-56 |         [(); return || {}]
+70 |         [(); return || {}]
    |                     ^^^^^
 
 thread 'main' panicked at 'Box<Any>', librustc_errors\lib.rs:499:9
 stack backtrace:
-   0: <u128 as core::fmt::num::Int>::zero
-   1: std::sys::windows::process::<impl core::convert::From<std::sys::windows::process::WindowsEnvKey> for std::ffi::os_str::OsString>::from
+   0: <u128 as compiler_builtins::int::Int>::min_value
+   1: core::alloc::<impl core::alloc::::Opaque>::null_mut
    2: std::panicking::take_hook
    3: std::panicking::take_hook
    4: rustc::ty::structural_impls::<impl rustc::ty::context::Lift<'tcx> for rustc::middle::const_val::ErrKind<'a>>::lift_to_tcx
@@ -45,11 +45,11 @@ stack backtrace:
   30: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
   31: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
   32: rustc::ty::maps::<impl rustc::ty::context::TyCtxt<'a, 'tcx, 'lcx>>::const_eval
-  33: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
-  34: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
-  35: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
-  36: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
-  37: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  33: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+  34: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+  35: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+  36: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+  37: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
   38: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
   39: <rustc_typeck::check::GatherLocalsVisitor<'a, 'gcx, 'tcx> as rustc::hir::intravisit::Visitor<'gcx>>::visit_pat
   40: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
@@ -69,7 +69,7 @@ stack backtrace:
   54: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
   55: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
   56: rustc_typeck::check_crate
-  57: <rustc_driver::pretty::UserIdentifiedItem as core::fmt::Debug>::fmt
+  57: <humantime::duration::Error as std::error::Error>::cause
   58: <rustc_driver::pretty::UserIdentifiedItem as core::fmt::Debug>::fmt
   59: <unknown>
   60: rustc_driver::driver::compile_input
@@ -102,7 +102,7 @@ note: the compiler unexpectedly panicked. this is a bug.
 
 note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
 
-note: rustc 1.27.0 (3eda71b00 2018-06-19) running on x86_64-pc-windows-msvc
+note: rustc 1.27.1 (5f2b325f6 2018-07-07) running on x86_64-pc-windows-msvc
 
 note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
 

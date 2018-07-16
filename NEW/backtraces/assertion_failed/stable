@@ -1,14 +1,14 @@
 thread 'main' panicked at 'assertion failed: self.tcx.sess.err_count() > 0', librustc_typeck\check\mod.rs:3791:19
 stack backtrace:
-   0: <u128 as core::fmt::num::Int>::zero
-   1: std::sys::windows::process::<impl core::convert::From<std::sys::windows::process::WindowsEnvKey> for std::ffi::os_str::OsString>::from
+   0: <u128 as compiler_builtins::int::Int>::min_value
+   1: core::alloc::<impl core::alloc::::Opaque>::null_mut
    2: std::panicking::take_hook
    3: std::panicking::take_hook
    4: rustc::ty::structural_impls::<impl rustc::ty::context::Lift<'tcx> for rustc::middle::const_val::ErrKind<'a>>::lift_to_tcx
    5: std::panicking::rust_panic_with_hook
    6: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
-   7: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
-   8: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+   7: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+   8: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
    9: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
   10: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
   11: rustc::ty::maps::<impl rustc::ty::maps::config::QueryConfig<'tcx> for rustc::ty::maps::queries::typeck_tables_of<'tcx>>::compute
@@ -35,14 +35,14 @@ stack backtrace:
   32: <rustc_typeck::astconv::Bounds<'tcx> as core::fmt::Debug>::fmt
   33: <rustc_typeck::variance::terms::InferredIndex as core::fmt::Debug>::fmt
   34: <unknown>
-  35: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
-  36: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  35: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+  36: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
   37: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
-  38: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
-  39: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
-  40: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
-  41: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
-  42: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  38: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+  39: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+  40: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+  41: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+  42: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
   43: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
   44: <rustc_typeck::check::GatherLocalsVisitor<'a, 'gcx, 'tcx> as rustc::hir::intravisit::Visitor<'gcx>>::visit_pat
   45: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
@@ -62,7 +62,7 @@ stack backtrace:
   59: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
   60: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
   61: rustc_typeck::check_crate
-  62: <rustc_driver::pretty::UserIdentifiedItem as core::fmt::Debug>::fmt
+  62: <humantime::duration::Error as std::error::Error>::cause
   63: <rustc_driver::pretty::UserIdentifiedItem as core::fmt::Debug>::fmt
   64: <unknown>
   65: rustc_driver::driver::compile_input
@@ -94,7 +94,7 @@ note: the compiler unexpectedly panicked. this is a bug.
 
 note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
 
-note: rustc 1.27.0 (3eda71b00 2018-06-19) running on x86_64-pc-windows-msvc
+note: rustc 1.27.1 (5f2b325f6 2018-07-07) running on x86_64-pc-windows-msvc
 
 note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
 
