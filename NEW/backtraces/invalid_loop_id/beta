@@ -3,7 +3,7 @@ error: internal compiler error: librustc_mir\hair\cx\expr.rs:551: invalid loop i
 thread 'main' panicked at 'Box<Any>', librustc_errors\lib.rs:554:9
 stack backtrace:
    0: <std::sync::mpsc::select::Select as core::fmt::Debug>::fmt
-   1: <std::sys::windows::dynamic_lib::DynamicLibrary as core::ops::drop::Drop>::drop
+   1: std::stdsimd::arch::detect::os::check_for
    2: std::panicking::take_hook
    3: std::panicking::take_hook
    4: <rustc::ty::query::on_disk_cache::CacheEncoder<'enc, 'a, 'tcx, serialize::opaque::Encoder<'enc>> as serialize::serialize::SpecializedEncoder<rustc::ich::fingerprint::Fingerprint>>::specialized_encode
@@ -20,7 +20,7 @@ stack backtrace:
   15: rustc_mir::hair::cx::expr::<impl rustc_mir::hair::Mirror<'tcx> for &'tcx rustc::hir::Expr>::make_mirror
   16: <rustc_mir::build::GlobalizeMir<'a, 'gcx> as rustc::mir::visit::MutVisitor<'tcx>>::visit_substs
   17: <rustc_mir::monomorphize::collector::MonoItemCollectionMode as core::fmt::Debug>::fmt
-  18: <rustc_mir::interpret::eval_context::ValTy<'tcx> as core::fmt::Debug>::fmt
+  18: <rustc_mir::transform::elaborate_drops::Elaborator<'a, 'b, 'tcx> as core::fmt::Debug>::fmt
   19: rustc_mir::build::mir_build
   20: rustc_mir::transform::mir_built
   21: rustc::ty::query::on_disk_cache::__ty_decoder_impl::<impl serialize::serialize::Decoder for rustc::ty::query::on_disk_cache::CacheDecoder<'a, 'tcx, 'x>>::read_str
@@ -73,7 +73,7 @@ stack backtrace:
   68: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::normalize_ty
   69: <rustc_typeck::check::autoderef::AutoderefKind as core::fmt::Debug>::fmt
   70: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
-  71: <rustc_typeck::outlives::test::OutlivesTest<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+  71: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
   72: <unknown>
   73: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
   74: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
@@ -85,7 +85,7 @@ stack backtrace:
   80: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
   81: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
   82: <rustc_typeck::check::GatherLocalsVisitor<'a, 'gcx, 'tcx> as rustc::hir::intravisit::Visitor<'gcx>>::visit_pat
-  83: <rustc_typeck::outlives::test::OutlivesTest<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+  83: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
   84: <rustc_typeck::check_unused::CollectExternCrateVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
   85: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
   86: rustc::ty::query::on_disk_cache::__ty_decoder_impl::<impl serialize::serialize::Decoder for rustc::ty::query::on_disk_cache::CacheDecoder<'a, 'tcx, 'x>>::read_str
@@ -118,7 +118,7 @@ note: the compiler unexpectedly panicked. this is a bug.
 
 note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
 
-note: rustc 1.28.0-beta.11 (67e5a1862 2018-07-14) running on x86_64-pc-windows-msvc
+note: rustc 1.28.0-beta.12 (a7e85eb25 2018-07-16) running on x86_64-pc-windows-msvc
 
 note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
 

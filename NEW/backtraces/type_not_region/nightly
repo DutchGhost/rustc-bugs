@@ -4,21 +4,21 @@ error[E0697]: closures cannot be static
 143 |         [(); &(static |x| {}) as *const _ as usize]
     |                ^^^^^^^^^^
 
-error: internal compiler error: librustc_mir\hair\cx\expr.rs:286: type of & not region
+error: internal compiler error: librustc_mir\hair\cx\expr.rs:288: type of & not region
    --> src\lib.rs:143:15
     |
 143 |         [(); &(static |x| {}) as *const _ as usize]
     |               ^^^^^^^^^^^^^^^
 
-thread 'main' panicked at 'Box<Any>', librustc_errors\lib.rs:499:9
+thread 'main' panicked at 'Box<Any>', librustc_errors\lib.rs:502:9
 stack backtrace:
    0: <std::sys::windows::args::Args as core::ops::drop::Drop>::drop
    1: std::error::<impl core::convert::From<alloc::borrow::Cow<'b, str>> for alloc::boxed::Box<(dyn std::error::Error + core::marker::Sync + core::marker::Send + 'a)>>::from
    2: std::panicking::take_hook
    3: std::panicking::take_hook
-   4: <rustc::ty::SymbolName as core::fmt::Display>::fmt
+   4: <rustc::ty::SymbolName as core::fmt::Debug>::fmt
    5: std::panicking::rust_panic_with_hook
-   6: <rustc_mir::dataflow::move_paths::indexes::BorrowIndex as rustc_data_structures::indexed_vec::Idx>::new
+   6: <rustc_mir::dataflow::move_paths::indexes::MoveOutIndex as rustc_data_structures::indexed_vec::Idx>::new
    7: <rustc_mir::dataflow::graphviz::Edge as core::fmt::Debug>::fmt
    8: <unknown>
    9: <unknown>
@@ -26,7 +26,7 @@ stack backtrace:
   11: <unknown>
   12: <unknown>
   13: <unknown>
-  14: rustc_mir::dataflow::move_paths::MoveData::gather_moves
+  14: rustc_mir::hair::cx::expr::<impl rustc_mir::hair::Mirror<'tcx> for &'tcx rustc::hir::Expr>::make_mirror
   15: rustc_mir::hair::cx::expr::<impl rustc_mir::hair::Mirror<'tcx> for &'tcx rustc::hir::Expr>::make_mirror
   16: <rustc_mir::hair::ExprRef<'tcx> as rustc_mir::hair::Mirror<'tcx>>::make_mirror
   17: <rustc_mir::build::GlobalizeMir<'a, 'gcx> as rustc::mir::visit::MutVisitor<'tcx>>::visit_substs
@@ -42,7 +42,7 @@ stack backtrace:
   27: <rustc_mir::build::GlobalizeMir<'a, 'gcx> as rustc::mir::visit::MutVisitor<'tcx>>::visit_substs
   28: <rustc_mir::build::GlobalizeMir<'a, 'gcx> as rustc::mir::visit::MutVisitor<'tcx>>::visit_substs
   29: <unknown>
-  30: <rustc_mir::interpret::eval_context::ValTy<'tcx> as core::fmt::Debug>::fmt
+  30: rustc_mir::dataflow::impls::storage_liveness::MaybeStorageLive::mir
   31: rustc_mir::build::mir_build
   32: rustc_mir::transform::mir_built
   33: rustc::ty::query::on_disk_cache::__ty_decoder_impl::<impl serialize::serialize::Decoder for rustc::ty::query::on_disk_cache::CacheDecoder<'a, 'tcx, 'x>>::read_str
@@ -96,7 +96,7 @@ stack backtrace:
   81: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
   82: <rustc_typeck::check::GatherLocalsVisitor<'a, 'gcx, 'tcx> as rustc::hir::intravisit::Visitor<'gcx>>::visit_pat
   83: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
-  84: <rustc_typeck::check::method::probe::ProbeScope as core::fmt::Debug>::fmt
+  84: <rustc_typeck::check_unused::CheckVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_trait_item
   85: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
   86: rustc::ty::query::on_disk_cache::__ty_decoder_impl::<impl serialize::serialize::Decoder for rustc::ty::query::on_disk_cache::CacheDecoder<'a, 'tcx, 'x>>::read_str
   87: rustc::ty::context::tls::track_diagnostic
@@ -129,7 +129,7 @@ note: the compiler unexpectedly panicked. this is a bug.
 
 note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
 
-note: rustc 1.29.0-nightly (31f1bc7b4 2018-07-15) running on x86_64-pc-windows-msvc
+note: rustc 1.29.0-nightly (4f3c7a472 2018-07-17) running on x86_64-pc-windows-msvc
 
 note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
 

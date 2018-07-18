@@ -13,23 +13,23 @@ error: internal compiler error: librustc_typeck\check\upvar.rs:115: type of clos
 thread 'main' panicked at 'Box<Any>', librustc_errors\lib.rs:499:9
 stack backtrace:
    0: <std::sync::mpsc::select::Select as core::fmt::Debug>::fmt
-   1: <std::sys::windows::dynamic_lib::DynamicLibrary as core::ops::drop::Drop>::drop
+   1: std::stdsimd::arch::detect::os::check_for
    2: std::panicking::take_hook
    3: std::panicking::take_hook
    4: <rustc::ty::query::on_disk_cache::CacheEncoder<'enc, 'a, 'tcx, serialize::opaque::Encoder<'enc>> as serialize::serialize::SpecializedEncoder<rustc::ich::fingerprint::Fingerprint>>::specialized_encode
    5: std::panicking::rust_panic_with_hook
    6: <rustc_typeck::namespace::Namespace as core::fmt::Debug>::fmt
    7: <rustc_typeck::check::op::Op as core::fmt::Debug>::fmt
-   8: <rustc_typeck::outlives::test::OutlivesTest<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
-   9: <rustc_typeck::outlives::test::OutlivesTest<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
-  10: <rustc_typeck::outlives::test::OutlivesTest<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
-  11: <rustc_typeck::outlives::test::OutlivesTest<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+   8: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
+   9: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
+  10: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
+  11: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
   12: <rustc_typeck::check::Diverges as core::fmt::Debug>::fmt
   13: <rustc_typeck::check::Diverges as core::fmt::Debug>::fmt
   14: <unknown>
   15: <rustc_typeck::check::upvar::InferBorrowKindVisitor<'a, 'gcx, 'tcx> as rustc::hir::intravisit::Visitor<'gcx>>::visit_expr
   16: <unknown>
-  17: <rustc_typeck::outlives::test::OutlivesTest<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+  17: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
   18: <rustc_typeck::check_unused::CollectExternCrateVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
   19: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
   20: rustc::ty::query::on_disk_cache::__ty_decoder_impl::<impl serialize::serialize::Decoder for rustc::ty::query::on_disk_cache::CacheDecoder<'a, 'tcx, 'x>>::read_str
@@ -56,7 +56,7 @@ stack backtrace:
   41: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
   42: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
   43: <rustc_typeck::check::GatherLocalsVisitor<'a, 'gcx, 'tcx> as rustc::hir::intravisit::Visitor<'gcx>>::visit_pat
-  44: <rustc_typeck::outlives::test::OutlivesTest<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+  44: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
   45: <rustc_typeck::check_unused::CollectExternCrateVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
   46: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
   47: rustc::ty::query::on_disk_cache::__ty_decoder_impl::<impl serialize::serialize::Decoder for rustc::ty::query::on_disk_cache::CacheDecoder<'a, 'tcx, 'x>>::read_str
@@ -77,12 +77,12 @@ stack backtrace:
   62: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
   63: rustc_typeck::check_crate
   64: <rustc_driver::Compilation as core::fmt::Debug>::fmt
-  65: <rustc_driver::pretty::IdentifiedAnnotation<'hir> as rustc_driver::pretty::HirPrinterSupport<'hir>>::sess
+  65: <rustc_driver::pretty::NoAnn<'hir> as rustc_driver::pretty::HirPrinterSupport<'hir>>::sess
   66: <unknown>
   67: rustc_driver::driver::compile_input
   68: rustc_driver::run_compiler
   69: rustc_driver::target_features::add_configuration
-  70: <rustc_driver::pretty::IdentifiedAnnotation<'hir> as rustc_driver::pretty::HirPrinterSupport<'hir>>::sess
+  70: <rustc_driver::pretty::NoAnn<'hir> as rustc_driver::pretty::HirPrinterSupport<'hir>>::sess
   71: _rust_maybe_catch_panic
   72: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
   73: rustc_driver::main
@@ -108,7 +108,7 @@ note: the compiler unexpectedly panicked. this is a bug.
 
 note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
 
-note: rustc 1.28.0-beta.11 (67e5a1862 2018-07-14) running on x86_64-pc-windows-msvc
+note: rustc 1.28.0-beta.12 (a7e85eb25 2018-07-16) running on x86_64-pc-windows-msvc
 
 note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
 

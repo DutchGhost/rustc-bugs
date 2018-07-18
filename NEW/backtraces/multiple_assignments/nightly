@@ -4,15 +4,15 @@ error: internal compiler error: librustc_mir\transform\qualify_consts.rs:230: mu
 105 |         const crash: () = 'a: while break 'a {};
     |                           ^^^^^^^^^^^^^^^^^^^^^
 
-thread 'main' panicked at 'Box<Any>', librustc_errors\lib.rs:499:9
+thread 'main' panicked at 'Box<Any>', librustc_errors\lib.rs:502:9
 stack backtrace:
    0: <std::sys::windows::args::Args as core::ops::drop::Drop>::drop
    1: std::error::<impl core::convert::From<alloc::borrow::Cow<'b, str>> for alloc::boxed::Box<(dyn std::error::Error + core::marker::Sync + core::marker::Send + 'a)>>::from
    2: std::panicking::take_hook
    3: std::panicking::take_hook
-   4: <rustc::ty::SymbolName as core::fmt::Display>::fmt
+   4: <rustc::ty::SymbolName as core::fmt::Debug>::fmt
    5: std::panicking::rust_panic_with_hook
-   6: <rustc_mir::dataflow::move_paths::indexes::BorrowIndex as rustc_data_structures::indexed_vec::Idx>::new
+   6: <rustc_mir::dataflow::move_paths::indexes::MoveOutIndex as rustc_data_structures::indexed_vec::Idx>::new
    7: <rustc_mir::dataflow::graphviz::Edge as core::fmt::Debug>::fmt
    8: <unknown>
    9: <unknown>
@@ -51,7 +51,7 @@ stack backtrace:
   42: <rustc_borrowck::borrowck::unused::UsedMutFinder<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_nested_body
   43: rustc_borrowck::borrowck::check_crate
   44: <unknown>
-  45: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_impl_item
+  45: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
   46: <rustc_driver::Compilation as core::fmt::Debug>::fmt
   47: rustc_driver::driver::compile_input
   48: rustc_driver::run_compiler
@@ -80,7 +80,7 @@ note: the compiler unexpectedly panicked. this is a bug.
 
 note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
 
-note: rustc 1.29.0-nightly (31f1bc7b4 2018-07-15) running on x86_64-pc-windows-msvc
+note: rustc 1.29.0-nightly (4f3c7a472 2018-07-17) running on x86_64-pc-windows-msvc
 
 note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
 

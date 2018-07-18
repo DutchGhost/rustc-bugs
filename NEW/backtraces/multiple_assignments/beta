@@ -7,7 +7,7 @@ error: internal compiler error: librustc_mir\transform\qualify_consts.rs:272: mu
 thread 'main' panicked at 'Box<Any>', librustc_errors\lib.rs:499:9
 stack backtrace:
    0: <std::sync::mpsc::select::Select as core::fmt::Debug>::fmt
-   1: <std::sys::windows::dynamic_lib::DynamicLibrary as core::ops::drop::Drop>::drop
+   1: std::stdsimd::arch::detect::os::check_for
    2: std::panicking::take_hook
    3: std::panicking::take_hook
    4: <rustc::ty::query::on_disk_cache::CacheEncoder<'enc, 'a, 'tcx, serialize::opaque::Encoder<'enc>> as serialize::serialize::SpecializedEncoder<rustc::ich::fingerprint::Fingerprint>>::specialized_encode
@@ -51,12 +51,12 @@ stack backtrace:
   42: <rustc_borrowck::borrowck::gather_loans::gather_moves::PatternSource<'tcx> as core::fmt::Debug>::fmt
   43: rustc_borrowck::borrowck::check_crate
   44: <rustc_driver::Compilation as core::fmt::Debug>::fmt
-  45: <rustc_driver::pretty::IdentifiedAnnotation<'hir> as rustc_driver::pretty::HirPrinterSupport<'hir>>::sess
+  45: <rustc_driver::pretty::NoAnn<'hir> as rustc_driver::pretty::HirPrinterSupport<'hir>>::sess
   46: <unknown>
   47: rustc_driver::driver::compile_input
   48: rustc_driver::run_compiler
   49: rustc_driver::target_features::add_configuration
-  50: <rustc_driver::pretty::IdentifiedAnnotation<'hir> as rustc_driver::pretty::HirPrinterSupport<'hir>>::sess
+  50: <rustc_driver::pretty::NoAnn<'hir> as rustc_driver::pretty::HirPrinterSupport<'hir>>::sess
   51: _rust_maybe_catch_panic
   52: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
   53: rustc_driver::main
@@ -80,7 +80,7 @@ note: the compiler unexpectedly panicked. this is a bug.
 
 note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
 
-note: rustc 1.28.0-beta.11 (67e5a1862 2018-07-14) running on x86_64-pc-windows-msvc
+note: rustc 1.28.0-beta.12 (a7e85eb25 2018-07-16) running on x86_64-pc-windows-msvc
 
 note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
 
