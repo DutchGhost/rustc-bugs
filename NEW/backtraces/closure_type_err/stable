@@ -21,7 +21,7 @@ error: internal compiler error: librustc_mir\hair\cx\expr.rs:477: closure expr w
 thread 'main' panicked at 'Box<Any>', librustc_errors\lib.rs:499:9
 stack backtrace:
    0: <u128 as compiler_builtins::int::Int>::min_value
-   1: core::alloc::<impl core::alloc::::Opaque>::null_mut
+   1: <std::sync::mpsc::RecvTimeoutError as std::error::Error>::cause
    2: std::panicking::take_hook
    3: std::panicking::take_hook
    4: rustc::ty::structural_impls::<impl rustc::ty::context::Lift<'tcx> for rustc::middle::const_val::ErrKind<'a>>::lift_to_tcx
@@ -32,8 +32,8 @@ stack backtrace:
    9: <rustc_mir::dataflow::move_paths::abs_domain::AbstractType as core::fmt::Debug>::fmt
   10: <rustc_mir::dataflow::move_paths::abs_domain::AbstractType as core::fmt::Debug>::fmt
   11: <rustc_mir::dataflow::move_paths::abs_domain::AbstractType as core::fmt::Debug>::fmt
-  12: <rustc_mir::borrow_check::nll::renumber::NLLVisitor<'a, 'gcx, 'tcx> as rustc::mir::visit::MutVisitor<'tcx>>::visit_user_assert_ty
-  13: <rustc_mir::borrow_check::nll::renumber::NLLVisitor<'a, 'gcx, 'tcx> as rustc::mir::visit::MutVisitor<'tcx>>::visit_user_assert_ty
+  12: <rustc_mir::monomorphize::collector::MonoItemCollectionMode as core::fmt::Debug>::fmt
+  13: <rustc_mir::monomorphize::collector::MonoItemCollectionMode as core::fmt::Debug>::fmt
   14: rustc_mir::dataflow::dataflow_path
   15: rustc_mir::hair::cx::expr::<impl rustc_mir::hair::Mirror<'tcx> for &'tcx rustc::hir::Expr>::make_mirror
   16: <rustc_mir::build::GlobalizeMir<'a, 'gcx> as rustc::mir::visit::MutVisitor<'tcx>>::visit_substs
@@ -119,7 +119,7 @@ stack backtrace:
   96: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
   97: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
   98: rustc::ty::maps::<impl rustc::ty::context::TyCtxt<'a, 'tcx, 'lcx>>::const_eval
-  99: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+  99: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
 query stack during panic:
 #0 [mir_built] processing `internal_compiler_errors::closure_type_err::{{initializer}}`
 #1 [unsafety_check_result] processing `internal_compiler_errors::closure_type_err::{{initializer}}`
@@ -136,7 +136,7 @@ note: the compiler unexpectedly panicked. this is a bug.
 
 note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
 
-note: rustc 1.27.1 (5f2b325f6 2018-07-07) running on x86_64-pc-windows-msvc
+note: rustc 1.27.2 (58cc626de 2018-07-18) running on x86_64-pc-windows-msvc
 
 note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
 

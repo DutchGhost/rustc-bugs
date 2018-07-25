@@ -20,7 +20,7 @@ stack backtrace:
   15: rustc_mir::hair::cx::expr::<impl rustc_mir::hair::Mirror<'tcx> for &'tcx rustc::hir::Expr>::make_mirror
   16: <rustc_mir::build::GlobalizeMir<'a, 'gcx> as rustc::mir::visit::MutVisitor<'tcx>>::visit_substs
   17: <rustc_mir::monomorphize::collector::MonoItemCollectionMode as core::fmt::Debug>::fmt
-  18: <rustc_mir::transform::elaborate_drops::Elaborator<'a, 'b, 'tcx> as core::fmt::Debug>::fmt
+  18: <rustc_mir::interpret::eval_context::ValTy<'tcx> as core::fmt::Debug>::fmt
   19: rustc_mir::build::mir_build
   20: rustc_mir::transform::mir_built
   21: rustc::ty::query::on_disk_cache::__ty_decoder_impl::<impl serialize::serialize::Decoder for rustc::ty::query::on_disk_cache::CacheDecoder<'a, 'tcx, 'x>>::read_str
@@ -118,7 +118,7 @@ note: the compiler unexpectedly panicked. this is a bug.
 
 note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
 
-note: rustc 1.28.0-beta.12 (a7e85eb25 2018-07-16) running on x86_64-pc-windows-msvc
+note: rustc 1.28.0-beta.14 (0aaa819fe 2018-07-24) running on x86_64-pc-windows-msvc
 
 note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
 

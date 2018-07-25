@@ -1,4 +1,4 @@
-error: internal compiler error: librustc_mir\transform\generator.rs:495: Broken MIR: generator contains type [generator@src\lib.rs:128:25: 130:14 {()}] in MIR, but typeck only knows about for<'r> {&'r mut [generator@src\lib.rs:128:25: 130:14 {()}], std::ops::GeneratorState<(), ()>, ()}
+error: internal compiler error: librustc_mir\transform\generator.rs:506: Broken MIR: generator contains type [generator@src\lib.rs:128:25: 130:14 {()}] in MIR, but typeck only knows about for<'r> {&'r mut [generator@src\lib.rs:128:25: 130:14 {()}], std::ops::GeneratorState<(), ()>, ()}
    --> src\lib.rs:127:9
     |
 127 | /         || {
@@ -12,23 +12,23 @@ error: internal compiler error: librustc_mir\transform\generator.rs:495: Broken 
 thread 'main' panicked at 'Box<Any>', librustc_errors\lib.rs:502:9
 stack backtrace:
    0: <std::sys::windows::args::Args as core::ops::drop::Drop>::drop
-   1: std::error::<impl core::convert::From<alloc::borrow::Cow<'b, str>> for alloc::boxed::Box<(dyn std::error::Error + core::marker::Sync + core::marker::Send + 'a)>>::from
+   1: std::error::<impl core::convert::From<alloc::borrow::Cow<'b, str>> for alloc::boxed::Box<(dyn std::error::Error + core::marker::Send + core::marker::Sync + 'a)>>::from
    2: std::panicking::take_hook
    3: std::panicking::take_hook
    4: <rustc::ty::SymbolName as core::fmt::Debug>::fmt
    5: std::panicking::rust_panic_with_hook
-   6: <rustc_mir::dataflow::move_paths::indexes::MoveOutIndex as rustc_data_structures::indexed_vec::Idx>::new
+   6: <rustc_mir::dataflow::move_paths::indexes::BorrowIndex as rustc_data_structures::indexed_vec::Idx>::new
    7: <rustc_mir::dataflow::graphviz::Edge as core::fmt::Debug>::fmt
-   8: <unknown>
-   9: <unknown>
-  10: <unknown>
-  11: <unknown>
-  12: <unknown>
-  13: <unknown>
+   8: <rustc_mir::interpret::const_eval::ConstEvalError as core::fmt::Debug>::fmt
+   9: <rustc_mir::interpret::const_eval::ConstEvalError as core::fmt::Debug>::fmt
+  10: <rustc_mir::interpret::const_eval::ConstEvalError as core::fmt::Debug>::fmt
+  11: <rustc_mir::interpret::const_eval::ConstEvalError as core::fmt::Debug>::fmt
+  12: <rustc_mir::interpret::const_eval::ConstEvalError as core::fmt::Debug>::fmt
+  13: <rustc_mir::interpret::const_eval::ConstEvalError as core::fmt::Debug>::fmt
   14: <rustc_mir::transform::generator::StateTransform as rustc_mir::transform::MirPass>::run_pass
   15: <rustc_mir::transform::MirSource as core::fmt::Debug>::fmt
   16: rustc_mir::transform::optimized_mir
-  17: rustc::ty::query::on_disk_cache::__ty_decoder_impl::<impl serialize::serialize::Decoder for rustc::ty::query::on_disk_cache::CacheDecoder<'a, 'tcx, 'x>>::read_str
+  17: <rustc::ty::query::job::QueryInfo<'tcx> as core::fmt::Debug>::fmt
   18: rustc::ty::context::tls::track_diagnostic
   19: rustc::ty::context::tls::track_diagnostic
   20: rustc::dep_graph::graph::DepGraph::assert_ignored
@@ -37,7 +37,7 @@ stack backtrace:
   23: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
   24: rustc::ty::query::<impl rustc::ty::context::TyCtxt<'a, 'tcx, 'lcx>>::optimized_mir
   25: rustc_mir::shim::provide
-  26: rustc::ty::query::on_disk_cache::__ty_decoder_impl::<impl serialize::serialize::Decoder for rustc::ty::query::on_disk_cache::CacheDecoder<'a, 'tcx, 'x>>::read_str
+  26: <rustc::ty::query::job::QueryInfo<'tcx> as core::fmt::Debug>::fmt
   27: rustc::ty::context::tls::track_diagnostic
   28: rustc::ty::context::tls::track_diagnostic
   29: rustc::dep_graph::graph::DepGraph::assert_ignored
@@ -48,7 +48,7 @@ stack backtrace:
   34: rustc_mir::monomorphize::collector::collect_crate_mono_items
   35: rustc_mir::monomorphize::collector::collect_crate_mono_items
   36: <rustc_mir::util::collect_writes::FindLocalAssignmentVisitor as rustc::mir::visit::Visitor<'tcx>>::visit_local
-  37: <&'tcx rustc::ty::TyS<'tcx> as rustc_mir::dataflow::move_paths::abs_domain::Lift>::lift
+  37: <rustc_mir::interpret::const_eval::ConstEvalError as core::fmt::Debug>::fmt
   38: rustc_mir::monomorphize::collector::collect_crate_mono_items
   39: <unknown>
   40: <rustc_codegen_llvm::base::ValueIter as core::iter::iterator::Iterator>::next
@@ -58,7 +58,7 @@ stack backtrace:
   44: rustc::ty::context::tls::track_diagnostic
   45: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
   46: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
-  47: <rustc_codegen_llvm::back::linker::MsvcLinker<'a> as rustc_codegen_llvm::back::linker::Linker>::finalize
+  47: <rustc_codegen_llvm::builder::Builder<'a, 'tcx> as core::ops::drop::Drop>::drop
   48: rustc::ty::context::tls::track_diagnostic
   49: rustc::ty::context::tls::track_diagnostic
   50: rustc::dep_graph::graph::DepGraph::assert_ignored
@@ -73,14 +73,14 @@ stack backtrace:
   59: <rustc_codegen_llvm::LlvmCodegenBackend as rustc_codegen_utils::codegen_backend::CodegenBackend>::codegen_crate
   60: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
   61: rustc_driver::driver::phase_4_codegen
-  62: <unknown>
-  63: <unknown>
+  62: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_impl_item
+  63: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_impl_item
   64: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
-  65: <rustc_driver::Compilation as core::fmt::Debug>::fmt
+  65: <rustc_driver::CompilationFailure as core::fmt::Debug>::fmt
   66: rustc_driver::driver::compile_input
   67: rustc_driver::run_compiler
   68: rustc_driver::target_features::add_configuration
-  69: <unknown>
+  69: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_impl_item
   70: _rust_maybe_catch_panic
   71: rustc_driver::profile::dump
   72: rustc_driver::main
@@ -105,7 +105,7 @@ note: the compiler unexpectedly panicked. this is a bug.
 
 note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
 
-note: rustc 1.29.0-nightly (4f3c7a472 2018-07-17) running on x86_64-pc-windows-msvc
+note: rustc 1.29.0-nightly (874dec25e 2018-07-21) running on x86_64-pc-windows-msvc
 
 note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
 

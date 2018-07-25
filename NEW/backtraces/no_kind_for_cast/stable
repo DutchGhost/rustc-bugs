@@ -7,7 +7,7 @@ error[E0019]: constant contains unimplemented expression type
 thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: EvalError { kind: a raw memory access tried to access part of a pointer value as raw bytes, backtrace: None }', libcore\result.rs:945:5
 stack backtrace:
    0: <u128 as compiler_builtins::int::Int>::min_value
-   1: core::alloc::<impl core::alloc::::Opaque>::null_mut
+   1: <std::sync::mpsc::RecvTimeoutError as std::error::Error>::cause
    2: std::panicking::take_hook
    3: std::panicking::take_hook
    4: rustc::ty::structural_impls::<impl rustc::ty::context::Lift<'tcx> for rustc::middle::const_val::ErrKind<'a>>::lift_to_tcx
@@ -15,7 +15,7 @@ stack backtrace:
    6: std::panicking::begin_panic_fmt
    7: rust_begin_unwind
    8: core::panicking::panic_fmt
-   9: <rustc::util::common::ProfileQueriesMsg as core::fmt::Debug>::fmt
+   9: flate2::crc::Crc::reset
   10: rustc::ty::maps::on_disk_cache::<impl serialize::serialize::SpecializedDecoder<rustc::ty::maps::on_disk_cache::IntEncodedWithFixedSize> for serialize::opaque::Decoder<'enc>>::specialized_decode
   11: rustc::ty::maps::on_disk_cache::<impl serialize::serialize::SpecializedDecoder<rustc::ty::maps::on_disk_cache::IntEncodedWithFixedSize> for serialize::opaque::Decoder<'enc>>::specialized_decode
   12: <rustc::infer::combine::Generalizer<'cx, 'gcx, 'tcx> as rustc::ty::relate::TypeRelation<'cx, 'gcx, 'tcx>>::tys
@@ -28,13 +28,13 @@ stack backtrace:
   19: <unknown>
   20: <unknown>
   21: <unknown>
-  22: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
-  23: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
-  24: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
-  25: <rustc_typeck::outlives::implicit_infer::InferVisitor<'cx, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_impl_item
+  22: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  23: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  24: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  25: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
   26: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
   27: <rustc_typeck::check::GatherLocalsVisitor<'a, 'gcx, 'tcx> as rustc::hir::intravisit::Visitor<'gcx>>::visit_pat
-  28: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
+  28: <rustc_typeck::coherence::inherent_impls_overlap::InherentOverlapChecker<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_trait_item
   29: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
   30: rustc::ty::maps::<impl rustc::ty::maps::config::QueryConfig<'tcx> for rustc::ty::maps::queries::typeck_tables_of<'tcx>>::compute
   31: rustc::ty::context::tls::track_diagnostic
@@ -51,7 +51,7 @@ stack backtrace:
   42: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
   43: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
   44: rustc_typeck::check_crate
-  45: <humantime::duration::Error as std::error::Error>::cause
+  45: <env_logger::Logger as log::Log>::flush
   46: <rustc_driver::pretty::UserIdentifiedItem as core::fmt::Debug>::fmt
   47: <unknown>
   48: rustc_driver::driver::compile_input
@@ -84,7 +84,7 @@ note: the compiler unexpectedly panicked. this is a bug.
 
 note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
 
-note: rustc 1.27.1 (5f2b325f6 2018-07-07) running on x86_64-pc-windows-msvc
+note: rustc 1.27.2 (58cc626de 2018-07-18) running on x86_64-pc-windows-msvc
 
 note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
 

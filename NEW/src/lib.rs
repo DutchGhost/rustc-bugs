@@ -168,6 +168,15 @@ pub mod internal_compiler_errors {
     pub fn cat_expr_errd() {
         [(); & { loop { continue } } ]
     }
+
+    #[cfg(all(feature = "infinite_recursion", any(feature = "stable", feature = "beta", feature = "nightly")))]
+    pub fn infinite_recursion() -> impl Fn() { infinite_recursion() }
+
+    #[cfg(all(feature = "infinite_recursion", any(feature = "stable", feature = "beta", feature = "nightly")))]
+    pub fn trigger() {
+        infinite_recursion();
+    }
+
 }
 
 pub mod invalid_code_generation {

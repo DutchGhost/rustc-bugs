@@ -24,7 +24,7 @@ stack backtrace:
   13: rustc::session::bug_fmt
   14: rustc::ty::query::on_disk_cache::<impl serialize::serialize::SpecializedDecoder<rustc::ty::query::on_disk_cache::IntEncodedWithFixedSize> for serialize::opaque::Decoder<'enc>>::specialized_decode
   15: <rustc::infer::combine::Generalizer<'cx, 'gcx, 'tcx> as rustc::ty::relate::TypeRelation<'cx, 'gcx, 'tcx>>::tys
-  16: <flate2::ffi::imp::StreamWrapper as core::ops::deref::Deref>::deref
+  16: rustc::infer::anon_types::Instantiator::fold_anon_ty
   17: <rustc::infer::sub::Sub<'combine, 'infcx, 'gcx, 'tcx> as rustc::ty::relate::TypeRelation<'infcx, 'gcx, 'tcx>>::tys
   18: <rustc_typeck::check_unused::CollectExternCrateVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
   19: <rustc_typeck::check_unused::CollectExternCrateVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
@@ -60,15 +60,15 @@ stack backtrace:
   49: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
   50: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
   51: rustc_typeck::check_crate
-  52: <rustc_driver::Compilation as core::fmt::Debug>::fmt
-  53: <rustc_driver::pretty::NoAnn<'hir> as rustc_driver::pretty::HirPrinterSupport<'hir>>::sess
+  52: rustc_driver::set_sigpipe_handler
+  53: <rustc_driver::pretty::IdentifiedAnnotation<'hir> as rustc_driver::pretty::PrinterSupport>::sess
   54: <unknown>
   55: rustc_driver::driver::compile_input
   56: rustc_driver::run_compiler
-  57: rustc_driver::target_features::add_configuration
-  58: <rustc_driver::pretty::NoAnn<'hir> as rustc_driver::pretty::HirPrinterSupport<'hir>>::sess
+  57: <env_logger::filter::inner::Filter as core::fmt::Display>::fmt
+  58: <rustc_driver::pretty::IdentifiedAnnotation<'hir> as rustc_driver::pretty::PrinterSupport>::sess
   59: _rust_maybe_catch_panic
-  60: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
+  60: <humantime::date::Error as std::error::Error>::cause
   61: rustc_driver::main
   62: <unknown>
   63: std::panicking::update_panic_count
@@ -90,7 +90,7 @@ note: the compiler unexpectedly panicked. this is a bug.
 
 note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
 
-note: rustc 1.28.0-beta.12 (a7e85eb25 2018-07-16) running on x86_64-pc-windows-msvc
+note: rustc 1.28.0-beta.14 (0aaa819fe 2018-07-24) running on x86_64-pc-windows-msvc
 
 note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
 
