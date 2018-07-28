@@ -46,7 +46,6 @@ class Icecream():
                         backtrace = '\n'.join(lines[1:])
 
                         yield version, ice_name, backtrace
-        yield "nightly", "test", "comp error"
 
 def join_paths(ice_name, version):
 
