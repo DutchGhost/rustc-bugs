@@ -46,10 +46,17 @@ class Icecream():
                         backtrace = '\n'.join(lines[1:])
 
                         yield version, ice_name, backtrace
+        yield "nightly", "test", "comp error"
 
 def join_paths(ice_name, version):
-    return "\\".join(["backtraces", ice_name, version])
 
+    directory = "\\".join(["backtraces", ice_name])
+    
+    if not os.path.exists(directory):
+        os.mkdir(directory)
+    
+    return "\\".join([directory, version])
+    
 if __name__ == '__main__':
     with Icecream() as icer:
         for version, ice_name, backtrace in icer:

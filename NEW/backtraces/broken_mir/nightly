@@ -9,16 +9,16 @@ error: internal compiler error: librustc_mir\transform\generator.rs:506: Broken 
 132 | |         };
     | |_________^
 
-thread 'main' panicked at 'Box<Any>', librustc_errors\lib.rs:502:9
+thread 'main' panicked at 'Box<Any>', librustc_errors\lib.rs:518:9
 stack backtrace:
    0: <std::sys::windows::args::Args as core::ops::drop::Drop>::drop
-   1: std::error::<impl core::convert::From<alloc::borrow::Cow<'b, str>> for alloc::boxed::Box<(dyn std::error::Error + core::marker::Send + core::marker::Sync + 'a)>>::from
+   1: std::error::<impl core::convert::From<alloc::borrow::Cow<'b, str>> for alloc::boxed::Box<(dyn std::error::Error + core::marker::Sync + core::marker::Send + 'a)>>::from
    2: std::panicking::take_hook
    3: std::panicking::take_hook
    4: <rustc::ty::SymbolName as core::fmt::Debug>::fmt
    5: std::panicking::rust_panic_with_hook
-   6: <rustc_mir::dataflow::move_paths::indexes::BorrowIndex as rustc_data_structures::indexed_vec::Idx>::new
-   7: <rustc_mir::dataflow::graphviz::Edge as core::fmt::Debug>::fmt
+   6: rustc_mir::borrow_check::nll::facts::<impl core::convert::From<usize> for rustc_mir::dataflow::move_paths::indexes::BorrowIndex>::from
+   7: <rustc_mir::build::matches::Test<'tcx> as core::fmt::Debug>::fmt
    8: <rustc_mir::interpret::const_eval::ConstEvalError as core::fmt::Debug>::fmt
    9: <rustc_mir::interpret::const_eval::ConstEvalError as core::fmt::Debug>::fmt
   10: <rustc_mir::interpret::const_eval::ConstEvalError as core::fmt::Debug>::fmt
@@ -73,14 +73,14 @@ stack backtrace:
   59: <rustc_codegen_llvm::LlvmCodegenBackend as rustc_codegen_utils::codegen_backend::CodegenBackend>::codegen_crate
   60: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
   61: rustc_driver::driver::phase_4_codegen
-  62: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_impl_item
-  63: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_impl_item
+  62: <env_logger::fmt::WriteStyle as core::default::Default>::default
+  63: <env_logger::fmt::WriteStyle as core::default::Default>::default
   64: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
   65: <rustc_driver::CompilationFailure as core::fmt::Debug>::fmt
   66: rustc_driver::driver::compile_input
   67: rustc_driver::run_compiler
   68: rustc_driver::target_features::add_configuration
-  69: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_impl_item
+  69: <env_logger::fmt::WriteStyle as core::default::Default>::default
   70: _rust_maybe_catch_panic
   71: rustc_driver::profile::dump
   72: rustc_driver::main
@@ -105,7 +105,7 @@ note: the compiler unexpectedly panicked. this is a bug.
 
 note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
 
-note: rustc 1.29.0-nightly (874dec25e 2018-07-21) running on x86_64-pc-windows-msvc
+note: rustc 1.29.0-nightly (6a1c0637c 2018-07-23) running on x86_64-pc-windows-msvc
 
 note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
 
