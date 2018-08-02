@@ -1,88 +1,94 @@
-thread 'main' panicked at 'assertion failed: self.tcx.sess.err_count() > 0', librustc_typeck\check\mod.rs:3791:19
+thread 'main' panicked at 'assertion failed: self.tcx.sess.err_count() > 0', librustc_typeck\check\mod.rs:3828:19
 stack backtrace:
-   0: <u128 as compiler_builtins::int::Int>::min_value
-   1: <std::sync::mpsc::RecvTimeoutError as std::error::Error>::cause
+   0: <std::sync::mpsc::select::Select as core::fmt::Debug>::fmt
+   1: std::stdsimd::arch::detect::os::check_for
    2: std::panicking::take_hook
    3: std::panicking::take_hook
-   4: rustc::ty::structural_impls::<impl rustc::ty::context::Lift<'tcx> for rustc::middle::const_val::ErrKind<'a>>::lift_to_tcx
+   4: <rustc::ty::query::on_disk_cache::CacheEncoder<'enc, 'a, 'tcx, serialize::opaque::Encoder<'enc>> as serialize::serialize::SpecializedEncoder<rustc::ich::fingerprint::Fingerprint>>::specialized_encode
    5: std::panicking::rust_panic_with_hook
-   6: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
+   6: <rustc_typeck::namespace::Namespace as core::fmt::Debug>::fmt
    7: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
    8: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
-   9: <rustc_typeck::coherence::inherent_impls_overlap::InherentOverlapChecker<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_trait_item
-  10: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
-  11: rustc::ty::maps::<impl rustc::ty::maps::config::QueryConfig<'tcx> for rustc::ty::maps::queries::typeck_tables_of<'tcx>>::compute
-  12: rustc::ty::context::tls::track_diagnostic
-  13: rustc::dep_graph::graph::DepGraph::assert_ignored
+   9: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
+  10: <rustc_typeck::check_unused::CollectExternCrateVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
+  11: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
+  12: rustc::ty::query::on_disk_cache::__ty_decoder_impl::<impl serialize::serialize::Decoder for rustc::ty::query::on_disk_cache::CacheDecoder<'a, 'tcx, 'x>>::read_str
+  13: rustc::ty::context::tls::track_diagnostic
   14: rustc::ty::context::tls::track_diagnostic
-  15: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
-  16: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
-  17: rustc::ty::maps::<impl rustc::ty::context::TyCtxt<'a, 'tcx, 'lcx>>::typeck_tables_of
-  18: rustc_mir::interpret::const_eval::const_eval_provider
-  19: rustc::ty::maps::<impl rustc::ty::maps::config::QueryConfig<'tcx> for rustc::ty::maps::queries::const_eval<'tcx>>::compute
-  20: rustc::ty::context::tls::track_diagnostic
-  21: rustc::dep_graph::graph::DepGraph::assert_ignored
+  15: rustc::dep_graph::graph::DepGraph::assert_ignored
+  16: rustc::ty::context::tls::track_diagnostic
+  17: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
+  18: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
+  19: rustc::ty::query::<impl rustc::ty::context::TyCtxt<'a, 'tcx, 'lcx>>::typeck_tables_of
+  20: rustc_mir::interpret::const_eval::const_eval_provider
+  21: rustc::ty::query::on_disk_cache::__ty_decoder_impl::<impl serialize::serialize::Decoder for rustc::ty::query::on_disk_cache::CacheDecoder<'a, 'tcx, 'x>>::read_str
   22: rustc::ty::context::tls::track_diagnostic
-  23: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
-  24: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
-  25: <rustc::traits::project::AssociatedTypeNormalizer<'a, 'b, 'gcx, 'tcx> as rustc::ty::fold::TypeFolder<'gcx, 'tcx>>::fold_const
-  26: rustc::ty::structural_impls::<impl rustc::ty::context::Lift<'tcx> for rustc::ty::ParamEnv<'a>>::lift_to_tcx
-  27: <rustc::traits::project::AssociatedTypeNormalizer<'a, 'b, 'gcx, 'tcx> as rustc::ty::fold::TypeFolder<'gcx, 'tcx>>::fold_ty
-  28: <rustc_typeck::coherence::inherent_impls_overlap::InherentOverlapChecker<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_trait_item
-  29: rustc_typeck::hir_trait_to_predicates
-  30: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::normalize_ty
-  31: <rustc_typeck::variance::terms::InferredIndex as core::fmt::Debug>::fmt
-  32: <rustc_typeck::astconv::Bounds<'tcx> as core::fmt::Debug>::fmt
-  33: <unknown>
-  34: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
-  35: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
-  36: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
-  37: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  23: rustc::ty::context::tls::track_diagnostic
+  24: rustc::dep_graph::graph::DepGraph::assert_ignored
+  25: rustc::ty::context::tls::track_diagnostic
+  26: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
+  27: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
+  28: <rustc::traits::project::AssociatedTypeNormalizer<'a, 'b, 'gcx, 'tcx> as rustc::ty::fold::TypeFolder<'gcx, 'tcx>>::fold_const
+  29: rustc::ty::structural_impls::<impl rustc::ty::context::Lift<'tcx> for rustc::middle::const_val::ErrKind<'a>>::lift_to_tcx
+  30: <rustc::traits::project::AssociatedTypeNormalizer<'a, 'b, 'gcx, 'tcx> as rustc::ty::fold::TypeFolder<'gcx, 'tcx>>::fold_ty
+  31: <rustc_typeck::check_unused::CollectExternCrateVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
+  32: <rustc_typeck::check_unused::CollectExternCrateVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
+  33: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::normalize_ty
+  34: <rustc_typeck::check::autoderef::AutoderefKind as core::fmt::Debug>::fmt
+  35: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
+  36: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
+  37: <unknown>
   38: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
   39: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
   40: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
   41: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
   42: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
-  43: <rustc_typeck::check::GatherLocalsVisitor<'a, 'gcx, 'tcx> as rustc::hir::intravisit::Visitor<'gcx>>::visit_pat
-  44: <rustc_typeck::coherence::inherent_impls_overlap::InherentOverlapChecker<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_trait_item
-  45: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
-  46: rustc::ty::maps::<impl rustc::ty::maps::config::QueryConfig<'tcx> for rustc::ty::maps::queries::typeck_tables_of<'tcx>>::compute
-  47: rustc::ty::context::tls::track_diagnostic
-  48: rustc::dep_graph::graph::DepGraph::assert_ignored
-  49: rustc::ty::context::tls::track_diagnostic
-  50: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
-  51: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
-  52: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
-  53: <rustc_typeck::check::Diverges as core::fmt::Debug>::fmt
-  54: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
+  43: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  44: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  45: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  46: <rustc_typeck::check::FnCtxt<'a, 'gcx, 'tcx> as rustc_typeck::astconv::AstConv<'gcx, 'tcx>>::record_ty
+  47: <rustc_typeck::check::GatherLocalsVisitor<'a, 'gcx, 'tcx> as rustc::hir::intravisit::Visitor<'gcx>>::visit_pat
+  48: <rustc_typeck::collect::has_late_bound_regions::LateBoundRegionsDetector<'a, 'tcx> as rustc::hir::intravisit::Visitor<'tcx>>::visit_lifetime
+  49: <rustc_typeck::check_unused::CollectExternCrateVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
+  50: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
+  51: rustc::ty::query::on_disk_cache::__ty_decoder_impl::<impl serialize::serialize::Decoder for rustc::ty::query::on_disk_cache::CacheDecoder<'a, 'tcx, 'x>>::read_str
+  52: rustc::ty::context::tls::track_diagnostic
+  53: rustc::ty::context::tls::track_diagnostic
+  54: rustc::dep_graph::graph::DepGraph::assert_ignored
   55: rustc::ty::context::tls::track_diagnostic
-  56: rustc::dep_graph::graph::DepGraph::assert_ignored
-  57: rustc::ty::context::tls::track_diagnostic
-  58: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
-  59: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_mark_green_and_read
-  60: rustc_typeck::check_crate
-  61: <env_logger::Logger as log::Log>::flush
-  62: <rustc_driver::pretty::UserIdentifiedItem as core::fmt::Debug>::fmt
-  63: <unknown>
-  64: rustc_driver::driver::compile_input
-  65: rustc_driver::run_compiler
-  66: rustc_driver::driver::build_output_filenames
-  67: <unknown>
-  68: rustc_driver::driver::build_output_filenames
-  69: _rust_maybe_catch_panic
-  70: rustc_driver::profile::trace::write_style
-  71: rustc_driver::main
-  72: <unknown>
-  73: std::panicking::update_panic_count
-  74: _rust_maybe_catch_panic
-  75: std::rt::lang_start_internal
-  76: <unknown>
-  77: <unknown>
-  78: BaseThreadInitThunk
-  79: RtlUserThreadStart
+  56: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
+  57: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
+  58: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
+  59: <rustc_typeck::collect::ItemCtxt<'a, 'tcx> as rustc_typeck::astconv::AstConv<'tcx, 'tcx>>::set_tainted_by_errors
+  60: <rustc_typeck::check::CheckItemTypesVisitor<'a, 'tcx> as rustc::hir::itemlikevisit::ItemLikeVisitor<'tcx>>::visit_item
+  61: rustc::ty::context::tls::track_diagnostic
+  62: rustc::ty::context::tls::track_diagnostic
+  63: rustc::dep_graph::graph::DepGraph::assert_ignored
+  64: rustc::ty::context::tls::track_diagnostic
+  65: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
+  66: rustc::ty::query::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::try_print_query_stack
+  67: rustc_typeck::check_crate
+  68: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_impl_item
+  69: <rustc_driver::pretty::IdentifiedAnnotation<'hir> as rustc_driver::pretty::PrinterSupport>::sess
+  70: <unknown>
+  71: rustc_driver::driver::compile_input
+  72: rustc_driver::run_compiler
+  73: rustc_driver::target_features::add_configuration
+  74: <rustc_driver::pretty::IdentifiedAnnotation<'hir> as rustc_driver::pretty::PrinterSupport>::sess
+  75: _rust_maybe_catch_panic
+  76: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
+  77: rustc_driver::main
+  78: <unknown>
+  79: std::panicking::update_panic_count
+  80: _rust_maybe_catch_panic
+  81: std::rt::lang_start_internal
+  82: <unknown>
+  83: <unknown>
+  84: BaseThreadInitThunk
+  85: RtlUserThreadStart
 query stack during panic:
-#0 [typeck_tables_of] processing `internal_compiler_errors::assertion_failed::{{closure}}::{{initializer}}`
-#1 [const_eval] const-evaluating `internal_compiler_errors::assertion_failed::{{closure}}::{{initializer}}`
+#0 [typeck_tables_of] processing `internal_compiler_errors::assertion_failed::{{closure}}::{{constant}}`
+#1 [const_eval] const-evaluating `internal_compiler_errors::assertion_failed::{{closure}}::{{constant}}`
 #2 [typeck_tables_of] processing `internal_compiler_errors::assertion_failed`
 #3 [typeck_item_bodies] type-checking all item bodies
 end of query stack
@@ -93,7 +99,7 @@ note: the compiler unexpectedly panicked. this is a bug.
 
 note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
 
-note: rustc 1.27.2 (58cc626de 2018-07-18) running on x86_64-pc-windows-msvc
+note: rustc 1.28.0 (9634041f0 2018-07-30) running on x86_64-pc-windows-msvc
 
 note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
 

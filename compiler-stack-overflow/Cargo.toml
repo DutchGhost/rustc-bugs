@@ -1,0 +1,6 @@
+[package]
+name = "compiler-stack-overflow"
+version = "0.1.0"
+authors = ["DutchGhost <kasper199914@gmail.com>"]
+
+[dependencies]
