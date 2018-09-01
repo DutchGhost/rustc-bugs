@@ -10,7 +10,7 @@ stack backtrace:
    1: std::error::<impl core::convert::From<alloc::borrow::Cow<'b, str>> for alloc::boxed::Box<(dyn std::error::Error + core::marker::Send + core::marker::Sync + 'a)>>::from
    2: std::panicking::take_hook
    3: std::panicking::take_hook
-   4: <rustc::ty::SymbolName as core::fmt::Display>::fmt
+   4: <rustc::ty::SymbolName as core::fmt::Debug>::fmt
    5: std::panicking::rust_panic_with_hook
    6: <rustc_mir::dataflow::graphviz::Edge as core::fmt::Debug>::fmt
    7: <rustc_mir::transform::promote_consts::Candidate as core::fmt::Debug>::fmt
@@ -21,7 +21,7 @@ stack backtrace:
   12: <unknown>
   13: <unknown>
   14: <rustc_mir::transform::qualify_consts::Mode as core::fmt::Display>::fmt
-  15: <rustc_mir::dataflow::impls::borrows::Borrows<'a, 'gcx, 'tcx> as rustc_mir::dataflow::BitDenotation>::start_block_effect
+  15: <rustc_mir::monomorphize::collector::MonoItemCollectionMode as core::fmt::Debug>::fmt
   16: <rustc_mir::transform::qualify_consts::Mode as core::fmt::Display>::fmt
   17: rustc_mir::transform::qualify_consts::provide
   18: rustc::ty::context::tls::track_diagnostic
@@ -51,12 +51,12 @@ stack backtrace:
   42: <rustc_borrowck::borrowck::check_loans::CheckLoanCtxt<'a, 'tcx> as rustc::middle::expr_use_visitor::Delegate<'tcx>>::matched_pat
   43: rustc_borrowck::borrowck::check_crate
   44: <rustc_driver::pretty::IdentifiedAnnotation<'hir> as rustc_driver::pretty::HirPrinterSupport<'hir>>::sess
-  45: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
+  45: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_impl_item
   46: <rustc_driver::CompilationFailure as core::fmt::Debug>::fmt
   47: rustc_driver::driver::compile_input
   48: rustc_driver::run_compiler
   49: <env_logger::filter::inner::Filter as core::fmt::Display>::fmt
-  50: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_item
+  50: <rustc_driver::derive_registrar::Finder as rustc::hir::itemlikevisit::ItemLikeVisitor<'v>>::visit_impl_item
   51: _rust_maybe_catch_panic
   52: rustc_driver::profile::dump
   53: rustc_driver::main
@@ -80,7 +80,7 @@ note: the compiler unexpectedly panicked. this is a bug.
 
 note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
 
-note: rustc 1.29.0-beta.1 (a3bef3daf 2018-07-31) running on x86_64-pc-windows-msvc
+note: rustc 1.29.0-beta.4 (d600a945a 2018-08-09) running on x86_64-pc-windows-msvc
 
 note: compiler flags: -C debuginfo=2 -C incremental --crate-type lib
 
